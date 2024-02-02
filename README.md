@@ -28,6 +28,35 @@ The TLC Trip Record Data, encompassing yellow and green taxi trip records, serve
 ## Data Model
 <img src="data_model.jpeg">
 
+
+## Star Schema for Data Warehouse
+
+In our data warehouse, we have designed a star schema to efficiently organize and query our raw datasets. The schema comprises a central fact table surrounded by dimension tables that provide contextual information.
+
+### Dimension Tables:
+* datetime_dim
+This dimension table dissects pickup and drop-off times into finer components, making it easier for querying. It includes attributes such as day, hour, year, and more, enhancing the granularity of time-related analyses.
+
+* passenger_count_dim
+Capturing the total number of passengers per trip along with a unique identifier, this dimension table facilitates comprehensive analysis of passenger-related metrics.
+
+* trip_distance_dim
+Storing the distance covered in each trip along with the corresponding trip ID, this dimension table aids in understanding and analyzing trip distances within the dataset.
+
+* rate_code_dim
+This dimension table converts numerical rate codes into meaningful rates as per the data dictionary, providing a more interpretable representation for rate-related analyses.
+
+* pickup_location_dim
+Containing the latitude and longitude of the pickup locations along with unique IDs, this dimension table assists in spatial analysis and geographical insights related to the pickup points.
+
+* dropoff_location_dim
+Similar to the pickup location dimension, this table stores the latitude and longitude of drop-off locations, enhancing our ability to analyze and visualize drop-off patterns.
+
+* payment_type_dim : This dimension table translates payment type codes into their corresponding meanings, as per the data dictionary, making payment-related analyses more interpretable.
+
+#### Fact Table
+In the process of augmenting our analytical capabilities, the integration of dimension tables with the central fact table has been orchestrated through a series of left join operations. The pivotal entity in this schema, the fact_table, encapsulates vital metrics such as amounts and listed prices corresponding to each recorded trip.
+
 ## References
 The project is inspired by insights from external sources. Check out the [Video Link](https://youtu.be/WpQECq5Hx9g) for more details.
 
